@@ -1,0 +1,65 @@
+﻿INSERT INTO [dbo].[User]
+           ([Id]
+           ,[Username]
+           ,[PasswordHash]
+           ,[PasswordSalt]
+           ,[FirstName]
+		   ,[SecondName]
+		   ,[ThirdName]
+		   ,[LastName]
+		   ,[PhoneNumber]
+		   ,[EmployeeNumber]
+           ,[Email]
+           ,[IsActive]
+           ,[IsDeleted]
+           ,[Created]
+           ,[CreatedBy])
+     VALUES
+           ( '901c54f5-9f6d-467e-8f51-7ae9fb9c6045'
+           , 'osama'
+           ,'vBYJVgR5PbX5L5N5f35gC3qbcfe2Qsd0V7dRuY6f3V7OGuQ0X9V6UuZ6LgV6UuZ6Lg=='
+           ,'EzxdvNSbT+aSPblRtOnoKw=='
+           , N'اسامه'
+		   , N'ابراهيم'
+		   , N'اسماعيل'
+		   , N'فضل'
+		   , N'0540000000'
+		   , N'emp-00001'
+           , 'moham@local.com'
+           , 1
+           , 0
+           , GETDATE()
+           ,'59C6D3AE-9D36-4134-B881-1995B6FFE442')
+
+
+insert into [group](id,name,[Description],IsActive,IsDeleted,Created, CreatedBy) 
+values('39e9e982-66d2-47df-975b-f123af6e1cf1', 
+N'مجموعة مدير النظام',
+N'تفاصيل مجموعة مدير النظام',
+1, 0, GETDATE(),'59C6D3AE-9D36-4134-B881-1995B6FFE442')
+
+
+
+INSERT INTO [dbo].[UserGroup]
+           ([UserId]
+           ,[GroupId]
+           ,[IsDeleted]
+           ,[Created]
+           ,[CreatedBy]
+		   )
+     VALUES
+           ('901c54f5-9f6d-467e-8f51-7ae9fb9c6045'
+           , '39e9e982-66d2-47df-975b-f123af6e1cf1'
+           , 0
+           ,GETDATE()
+           ,'901c54f5-9f6d-467e-8f51-7ae9fb9c6045'
+		   )
+
+
+
+
+insert into GroupPermission(GroupId,PermissionId,IsDeleted,Created,CreatedBy) 
+VALUES ('39e9e982-66d2-47df-975b-f123af6e1cf1', 1, 0, GETDATE(), '901c54f5-9f6d-467e-8f51-7ae9fb9c6045')
+
+insert into GroupPermission(GroupId,PermissionId,IsDeleted,Created,CreatedBy) 
+VALUES ('39e9e982-66d2-47df-975b-f123af6e1cf1', 2, 0, GETDATE(), '901c54f5-9f6d-467e-8f51-7ae9fb9c6045')
