@@ -40,7 +40,7 @@ public class Result<T>
         return new Result<T>(default(T), errors, HttpStatusCode.BadRequest);
     }
 
-    internal static Result<UserBriefDto> Success(UserBriefDto group)
+    internal static Result<UserBrief> Success(UserBrief group)
     {
         throw new NotImplementedException();
     }

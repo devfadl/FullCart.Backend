@@ -32,4 +32,18 @@
     <ProjectReference Include="..\FullCart.Domain\FullCart.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Common\Dto\Attachment\" />
+    <Folder Include="Features\Inventory\Commands\" />
+    <Folder Include="Features\Inventory\EventHandlers\" />
+    <Folder Include="Features\Inventory\Queries\" />
+    <Folder Include="Features\Order\Commands\" />
+    <Folder Include="Features\Order\EventHandlers\" />
+    <Folder Include="Features\Product\Commands\CreateProduct\" />
+    <Folder Include="Features\Product\Commands\DeleteProduct\" />
+    <Folder Include="Features\Product\Commands\UpdateProductQuantity\" />
+    <Folder Include="Features\Product\Commands\UpdateProduct\" />
+    <Folder Include="Features\Product\EventHandlers\" />
+  </ItemGroup>
+
 </Project>

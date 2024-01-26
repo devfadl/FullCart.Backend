@@ -36,6 +36,16 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public virtual DbSet<UserPermission> UserPermissions { get; set; } = null!;
     public virtual DbSet<TransactionType> TransactionType { get; set; } = null!;
     public virtual DbSet<UserTransaction> UserTransaction { get; set; } = null!;
+    public virtual DbSet<Product> Product { get; set; } = null!;
+    public virtual DbSet<ProductCategory> ProductCategory { get; set; } = null!;
+    public virtual DbSet<Brand> Brand { get; set; } = null!;
+    public virtual DbSet<ProductImage> ProductImage { get; set; } = null!;
+    public virtual DbSet<Order> Order { get; set; } = null!;
+    public virtual DbSet<OrderDetail> OrderDetail { get; set; } = null!;
+    public virtual DbSet<OrderStatusLookup> OrderStatusLookup { get; set; } = null!;
+    public virtual DbSet<Inventory> Inventory { get; set; } = null!;
+    public virtual DbSet<InventoryItem> InventoryItem { get; set; } = null!;
+    public virtual DbSet<Customer> Customer { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -47,7 +57,15 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
         builder.Entity<Permission>().HasQueryFilter(p => !p.IsDeleted);
         builder.Entity<UserGroup>().HasQueryFilter(p => !p.IsDeleted);
         builder.Entity<UserPermission>().HasQueryFilter(p => !p.IsDeleted);
-        //OnModelCreatingPartial(builder);
+        builder.Entity<ProductCategory>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<Product>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<Brand>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<ProductImage>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<Order>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<OrderDetail>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<Inventory>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<InventoryItem>().HasQueryFilter(p => !p.IsDeleted);
+        builder.Entity<Customer>().HasQueryFilter(p => !p.IsDeleted);
 
         base.OnModelCreating(builder);
 

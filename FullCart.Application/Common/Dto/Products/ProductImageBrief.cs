@@ -1,9 +1,8 @@
-﻿namespace FullCart.Application.Common.Dto.DMS
+﻿namespace FullCart.Application.Common.Dto.Products
 {
-    public class UploadAttachmentDto
+    public class ProductImageBrief
     {
         public byte[] File { get; set; }
-        public string CreatedBy { get; set; }
         public string FileName { get; set; }
         public string ContentType { get; set; }
     }

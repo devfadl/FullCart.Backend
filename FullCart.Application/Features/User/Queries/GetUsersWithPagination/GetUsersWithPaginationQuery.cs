@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FullCart.Application.User.Queries.GetUsersWithPagination;
 
-public record GetUsersWithPaginationQuery : IRequest<PaginatedList<UserBriefDto>>
+public record GetUsersWithPaginationQuery : IRequest<PaginatedList<UserBrief>>
 {
     public int PageNumber { get; init; } = 1;
     public int PageSize { get; init; } = 10;
@@ -20,7 +20,7 @@ public record GetUsersWithPaginationQuery : IRequest<PaginatedList<UserBriefDto>
     public string SearchText { get; init; } = String.Empty;
 }
 
-public class GetUsersWithPaginationQueryHandler : IRequestHandler<GetUsersWithPaginationQuery, PaginatedList<UserBriefDto>>
+public class GetUsersWithPaginationQueryHandler : IRequestHandler<GetUsersWithPaginationQuery, PaginatedList<UserBrief>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -31,7 +31,7 @@ public class GetUsersWithPaginationQueryHandler : IRequestHandler<GetUsersWithPa
         _mapper = mapper;
     }
 
-    public async Task<PaginatedList<UserBriefDto>> Handle(GetUsersWithPaginationQuery request, CancellationToken cancellationToken)
+    public async Task<PaginatedList<UserBrief>> Handle(GetUsersWithPaginationQuery request, CancellationToken cancellationToken)
     {
         var query = _context.Users.Include(p => p.UserGroups).AsQueryable();
 
@@ -48,7 +48,7 @@ public class GetUsersWithPaginationQueryHandler : IRequestHandler<GetUsersWithPa
         }
 
         return await query.OrderBy(x => x.FirstName)
-            .ProjectTo<UserBriefDto>(_mapper.ConfigurationProvider)
+            .ProjectTo<UserBrief>(_mapper.ConfigurationProvider)
             .PaginatedListAsync(request.PageNumber, request.PageSize);
     }
 }

@@ -12,12 +12,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FullCart.Application.User.Queries.GetUsersById;
 
-public record GetUsersByIdQuery : IRequest<Result<UserBriefDto>>
+public record GetUsersByIdQuery : IRequest<Result<UserBrief>>
 {
     public Guid Id { get; init; }
 }
 
-public class GetUsersByIdQueryHandler : IRequestHandler<GetUsersByIdQuery, Result<UserBriefDto>>
+public class GetUsersByIdQueryHandler : IRequestHandler<GetUsersByIdQuery, Result<UserBrief>>
 {
     private readonly IApplicationDbContext _context;
     private readonly IMapper _mapper;
@@ -28,22 +28,22 @@ public class GetUsersByIdQueryHandler : IRequestHandler<GetUsersByIdQuery, Resul
         _mapper = mapper;
     }
 
-    public async Task<Result<UserBriefDto>> Handle(GetUsersByIdQuery request, CancellationToken cancellationToken)
+    public async Task<Result<UserBrief>> Handle(GetUsersByIdQuery request, CancellationToken cancellationToken)
     {
         if (request.Id == Guid.Empty)
         {
-            return Result<UserBriefDto>.NotFound(Localization.ERROR_NOT_FOUND);
+            return Result<UserBrief>.NotFound(Localization.ERROR_NOT_FOUND);
         }
 
 
         var user = await _context.Users
             .Where(x => x.Id == request.Id)
-            .ProjectToQueryAsync<UserBriefDto>(_mapper.ConfigurationProvider)
+            .ProjectToQueryAsync<UserBrief>(_mapper.ConfigurationProvider)
             .FirstOrDefaultAsync(cancellationToken);
 
         if (user == null)
-            return Result<UserBriefDto>.NotFound(Localization.ERROR_NOT_FOUND);
+            return Result<UserBrief>.NotFound(Localization.ERROR_NOT_FOUND);
 
-        return Result<UserBriefDto>.Success(user);
+        return Result<UserBrief>.Success(user);
     }
 }

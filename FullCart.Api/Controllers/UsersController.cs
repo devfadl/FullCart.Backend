@@ -21,14 +21,14 @@ namespace FullCart.Api.Controllers
     public class UsersController : ApiControllerBase
     {
         [HttpGet]
-        public async Task<ActionResult<PaginatedList<UserBriefDto>>> GetUsersWithPaginationQuery([FromQuery] GetUsersWithPaginationQuery query)
+        public async Task<ActionResult<PaginatedList<UserBrief>>> GetUsersWithPaginationQuery([FromQuery] GetUsersWithPaginationQuery query)
         {
             return await Mediator.Send(query);
         }
 
         [HttpGet]
         [Route("all-users")]
-        public async Task<ActionResult<List<UserBriefDto>>> GetAllUsers([FromQuery] GetAllUsersQuery query)
+        public async Task<ActionResult<List<UserBrief>>> GetAllUsers([FromQuery] GetAllUsersQuery query)
         {
             return await Mediator.Send(query);
         }

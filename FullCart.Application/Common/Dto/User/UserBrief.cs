@@ -1,7 +1,7 @@
 ﻿using FullCart.Application.Common.Mappings;
 
 namespace FullCart.Application.Common.Dto;
-public class UserBriefDto : IMapFrom<Domain.Entities.User>
+public class UserBrief : IMapFrom<Domain.Entities.User>
 {
     public Guid Id { get; set; }
     public string Username { get; set; }

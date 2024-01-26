@@ -9,6 +9,14 @@
         GroupUpdated = 5,
         UserGroupAdded = 6,
         GroupPermissionAdded = 7,
-
+        ProductAdded ,
+        ProductDeleted ,
+        ProductUpdated,
+        ProductCategoryAdded,
+        ProductCategoryDeleted,
+        ProductCategoryUpdated ,
+        BrandAdded ,
+        BrandDeleted,
+        BrandUpdated,
     }
 }
